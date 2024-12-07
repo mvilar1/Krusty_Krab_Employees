@@ -1,11 +1,11 @@
-from . import orders, order_details, recipes, sandwiches, resources
+from ..dependencies.database import Base, engine
+from ..models.customers import Customer
+from ..models.ratings import Rating
+from ..models.payment import Payment
+from ..models.orders import Order
+from ..models.menu_items import MenuItem
+from ..models.resources import Resource
+from ..models.promotions import Promotion
 
-from ..dependencies.database import engine
-
-
-def index():
-    orders.Base.metadata.create_all(engine)
-    order_details.Base.metadata.create_all(engine)
-    recipes.Base.metadata.create_all(engine)
-    sandwiches.Base.metadata.create_all(engine)
-    resources.Base.metadata.create_all(engine)
+# Create tables based on the updated models
+Base.metadata.create_all(bind=engine)
